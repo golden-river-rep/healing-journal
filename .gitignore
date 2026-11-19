@@ -1,0 +1,14 @@
+imports/**
+drafts/**
+Daily/**
+Insights/**
+!**/.gitkeep
+__pycache__/
+*.pyc
+.venv/
+config/local*
+
+config/settings.json
+.DS_Store
+*.zip
+.env
