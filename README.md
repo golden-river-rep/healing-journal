@@ -54,3 +54,12 @@ MIT 许可证允许复制、修改和分发工具；许可证不要求分享任�
 在 Codex 中说“整理今天的，生成全套”，先依据已授权材料创建日记草稿，再依次读取上述三个 Skill，输出三份创作草稿到 creative-drafts/<批次>/。材料日期不明时列待确认，不自行把事件记成今天。该操作由 Codex 编排，当前没有无人值守的一键 CLI，也不会自动发布。
 
 个人范文、模板和改稿偏好放在 private/style/ 的 xiaohongshu、wechat、fiction 子目录；未提供时使用通用初版。改稿后先提议风格更新，由用户确认后形成偏好。private/ 和 creative-drafts/ 均忽略提交，公开仓库只包含通用规则与空白模板。
+
+
+## 跨工具入口
+
+核心规则统一维护在 docs/CORE.md。Codex 入口为 AGENTS.md，Claude Code 入口为 CLAUDE.md；千问、WorkBuddy 使用 adapters/qianwen.md 或 adapters/workbuddy.md 中可复制的指令，并提供项目路径或授权材料。不假设它们有自动发现 Skill、定时任务或本地写入权限，尚未在这两个产品内实测。
+
+修改核心规则后运行 `python3 scripts/sync_adapters.py` 刷新通用指令。Python CLI 不依赖任何 AI 客户端。请勿让多个工具同时处理同一收件箱。
+
+定时任务只处理用户主动放入 imports/inbox/ 的新文件。普通 ChatGPT 聊天不会自动进入此目录。由各产品自己的调度器执行，仓库本身不会自动安装后台任务；没有新材料不生成内容。私人去重状态保存在 private/processed.json。
