@@ -63,3 +63,8 @@ MIT 许可证允许复制、修改和分发工具；许可证不要求分享任�
 修改核心规则后运行 `python3 scripts/sync_adapters.py` 刷新通用指令。Python CLI 不依赖任何 AI 客户端。请勿让多个工具同时处理同一收件箱。
 
 定时任务只处理用户主动放入 imports/inbox/ 的新文件。普通 ChatGPT 聊天不会自动进入此目录。由各产品自己的调度器执行，仓库本身不会自动安装后台任务；没有新材料不生成内容。私人去重状态保存在 private/processed.json。
+
+
+## 插件预览版
+
+已提供 0.2.0 Skills 插件包、独立数据目录初始化和连接检查。安装说明见 [docs/PLUGIN.md](docs/PLUGIN.md)。本版未包含 MCP 服务、未提交官方目录，客户端安装待实测。

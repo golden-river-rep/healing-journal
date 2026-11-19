@@ -49,6 +49,10 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--root', type=Path, default=ROOT)
     sub = p.add_subparsers(dest='cmd', required=True)
+    init = sub.add_parser('init')
+    init.add_argument('--vault', type=Path)
+    init.add_argument('--timezone', default='Asia/Shanghai')
+    sub.add_parser('doctor')
     imp = sub.add_parser('import')
     imp.add_argument('file', type=Path)
     imp.add_argument('--from-date')
@@ -59,7 +63,30 @@ def main(argv=None):
     sub.add_parser('status').add_argument('batch')
     args = p.parse_args(argv)
     root = args.root.resolve()
+    if args.cmd == 'init':
+        ZoneInfo(args.timezone)
+        vault = args.vault.expanduser().resolve() if args.vault else None
+        if vault and not (vault.is_dir() and (vault/'.obsidian').is_dir()):
+            p.error('Select an existing Obsidian Vault with .obsidian directory')
+        config = root/'config/settings.json'
+        if config.exists():
+            p.error('Configuration exists; refusing to overwrite')
+        for directory in ('imports/inbox', 'drafts', 'Daily', 'Insights', 'private/style', 'creative-drafts'):
+            (root/directory).mkdir(parents=True, exist_ok=True)
+        write_new(config, json.dumps({'timezone': args.timezone, 'vault_path': str(vault) if vault else None}, indent=2))
+        print(f'Initialized {root}; no Vault files changed')
+        return
+    if not (root/'config/settings.json').exists():
+        p.error('Run init first')
     cfg = json.loads((root/'config/settings.json').read_text())
+    if args.cmd == 'doctor':
+        ZoneInfo(cfg['timezone'])
+        vault = Path(cfg['vault_path']).expanduser() if cfg.get('vault_path') else None
+        if vault and not (vault/'.obsidian').is_dir():
+            p.error('Configured Vault is missing')
+        print('Configuration OK; Vault verified' if vault else 'Configuration OK; project-local output')
+        print('No automatic ChatGPT history access; publishing requires approval')
+        return
     if args.cmd == 'import':
         raw = args.file.read_bytes()
         records = list(parse(json.loads(raw), cfg['timezone']))

@@ -1,0 +1,1 @@
+[{"id":"sample","current_node":"b","mapping":{"a":{"parent":null,"message":{"author":{"role":"user"},"create_time":1795000000,"content":{"parts":["今天散步20分钟，心情平静。昨晚睡了7小时。"]}}},"b":{"parent":"a","message":{"author":{"role":"assistant"},"content":{"parts":["这是助手的解释，不应视为用户事实。"]}}},"c":{"parent":"a","message":{"author":{"role":"user"},"content":{"parts":["另一个分支，日期未知。"]}}}}}]

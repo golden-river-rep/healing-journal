@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "healing-journal",
+  "version": "0.2.0",
+  "description": "Review-first personal journals and creative drafts from authorized conversations",
+  "author": {
+    "name": "Healing Journal contributors"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/golden-river-rep/healing-journal",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/healing-setup/SKILL.md"
+    }
+  }
+}

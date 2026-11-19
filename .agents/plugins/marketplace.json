@@ -1,0 +1,10 @@
+{
+  "name": "healing-journal-community",
+  "interface": {"displayName": "Healing Journal Community"},
+  "plugins": [{
+    "name": "healing-journal",
+    "source": {"source": "local", "path": "./plugins/healing-journal"},
+    "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+    "category": "Productivity"
+  }]
+}
