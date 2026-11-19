@@ -12,3 +12,6 @@ config/settings.json
 .DS_Store
 *.zip
 .env
+
+private/
+creative-drafts/

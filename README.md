@@ -41,3 +41,16 @@ Codex 在此项目中可使用 `.agents/skills/healing-journal/SKILL.md`。说�
 工具不进行心理诊断，AI 整理仍需本人审核。工具代码不主动联网；使用 Codex 整理时，选中的材料会进入当前 AI 会话，不能视为完全离线推理。
 
 MIT 许可证允许复制、修改和分发工具；许可证不要求分享任何个人记录。
+
+
+## 创作 Skills（通用初版）
+
+- healing-xiaohongshu：具体处境、真实发现、标题与封面文案、短篇正文。
+- healing-wechat-essay：由经历展开思考，保留理解如何变化，形成完整文章。
+- healing-fiction-seeds：小说素材卡与明确标注的虚构场景。
+
+这些是写作默认值，不是平台算法保证或官方字数限制。小红书标题与正文需一致，可参考官方说明：https://school.xiaohongshu.com/rule/detail/2569 。
+
+在 Codex 中说“整理今天的，生成全套”，先依据已授权材料创建日记草稿，再依次读取上述三个 Skill，输出三份创作草稿到 creative-drafts/<批次>/。材料日期不明时列待确认，不自行把事件记成今天。该操作由 Codex 编排，当前没有无人值守的一键 CLI，也不会自动发布。
+
+个人范文、模板和改稿偏好放在 private/style/ 的 xiaohongshu、wechat、fiction 子目录；未提供时使用通用初版。改稿后先提议风格更新，由用户确认后形成偏好。private/ 和 creative-drafts/ 均忽略提交，公开仓库只包含通用规则与空白模板。
